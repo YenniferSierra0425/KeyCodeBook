@@ -10,6 +10,8 @@ app.use(bodyParser.json())
 
 conectDB()//Estamos ejecutando el modulo de nuestra conexión de la base de datos.
 require('./routes/user')(app)
+require('./routes/genre')(app)
+require('./routes/book')(app)
 app.listen(3000, () => {
      console.log('Se levanto el servidor...')
     })
