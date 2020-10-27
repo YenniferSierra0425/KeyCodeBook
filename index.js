@@ -12,6 +12,7 @@ conectDB()//Estamos ejecutando el modulo de nuestra conexión de la base de dato
 require('./routes/user')(app)
 require('./routes/genre')(app)
 require('./routes/book')(app)
+
 app.listen(3000, () => {
      console.log('Se levanto el servidor...')
     })
