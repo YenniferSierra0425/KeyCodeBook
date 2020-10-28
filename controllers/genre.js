@@ -66,3 +66,37 @@ exports.update = (req, res) =>{
 
 
 }
+
+/**Metodo para obtener todos los usuarios
+ * @param {*} req => Todo lo que enviamos desde el body (Formulario) o url
+ * @param {*} res => La respuesta que se devolverá
+*/
+exports.getAll = (req, res) =>{
+    GenreModel.find()
+    .then((genres) => {res.send(genres) } )
+    .catch(
+        (error) => {
+            res.status(500).send({
+                message: error.message
+            })
+        }
+    )
+}
+
+/**Metodo para obtener todos los usuarios
+ * @param {*} req => Todo lo que enviamos desde el body (Formulario) o url
+ * @param {*} res => La respuesta que se devolverá
+*/
+
+exports.getOne = (req , res) => {
+    GenreModel.findById(req.params.id)
+
+    .then((genre) => {res.send(genre) } )
+    .catch(
+        (error) =>{
+            res.status(500).send({
+                message: error.message
+            })
+        }
+    )
+}
