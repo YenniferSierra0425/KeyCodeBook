@@ -60,7 +60,7 @@ const user ={
  * -El id del usuario => req.params. ud es el id que se envia por la URL
  * -Los datos nuevos
 */
-UserModel.findByIdAndUpdate(req.params.id, user)
+UserModel.findByIdAndUpdate(req.params.id, user, {new:user})
 .then(
     (userUpdate) =>{
         res.send(userUpdate)
@@ -73,3 +73,54 @@ UserModel.findByIdAndUpdate(req.params.id, user)
     }
 )
 }
+ 
+/**Metodo para obtener todos los usuarios
+ * @param {*} req => Todo lo que enviamos desde el body (Formulario) o url
+ * @param {*} res => La respuesta que se devolverá
+*/
+exports.getAll = (req, res) =>{
+    UserModel.find()
+    .then((users) => {res.send(users) } )
+    .catch(
+        (error) => {
+            res.status(500).send({
+                message: error.message
+            })
+        }
+    )
+}
+
+/**Metodo para obtener todos los usuarios
+ * @param {*} req => Todo lo que enviamos desde el body (Formulario) o url
+ * @param {*} res => La respuesta que se devolverá
+*/
+
+exports.getOne = (req , res) => {
+    UserModel.findById(req.params.id)
+    .populate('genre')
+    .exec()
+    .then((user) => {res.send(user) } )
+    .catch(
+        (error) =>{
+            res.status(500).send({
+                message: error.message
+            })
+        }
+    )
+}
+
+/**Metodo para eliminar un libro por el id
+ * @param {*} req => Todo lo que se recibe
+ * @param {*} res => La respuesta que se devolverá
+*/
+exports.deleteOne = (req, res) => {
+    UserModel.findByIdAndRemove(req.params.id)
+    .then((user) => { res.send(user) } )
+    .catch(
+        (error) =>{
+            res.status(500).send({
+                message: error.message
+            })
+        }
+    ) 
+    }
