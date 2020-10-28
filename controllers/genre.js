@@ -67,7 +67,7 @@ exports.update = (req, res) =>{
 
 }
 
-/**Metodo para obtener todos los usuarios
+/**Metodo para obtener todos los generos
  * @param {*} req => Todo lo que enviamos desde el body (Formulario) o url
  * @param {*} res => La respuesta que se devolverá
 */
@@ -83,7 +83,7 @@ exports.getAll = (req, res) =>{
     )
 }
 
-/**Metodo para obtener todos los usuarios
+/**Metodo para obtener todos los generos
  * @param {*} req => Todo lo que enviamos desde el body (Formulario) o url
  * @param {*} res => La respuesta que se devolverá
 */
