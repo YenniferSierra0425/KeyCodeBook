@@ -8,6 +8,10 @@ const port = process.env.PORT || 3000
 app.use(cors())
 app.use(bodyParser.json())
 
+
+
+
+
 conectDB()//Estamos ejecutando el modulo de nuestra conexión de la base de datos.
 require('./routes/user')(app)
 require('./routes/genre')(app)
