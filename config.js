@@ -1,3 +1,3 @@
 module.exports = {
-    monoDB: process.env.MONGODB
+    mongoDB: process.env.MONGODB
 }
