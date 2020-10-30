@@ -1,5 +1,7 @@
 const { reset } = require('nodemon')
 const UserModel = require ('../models/users')
+const user = require('../routes/user')
+const service = require('../services/index')
 
 
   /**Metodo para actualizar un usuario  
@@ -63,6 +65,7 @@ const user ={
 UserModel.findByIdAndUpdate(req.params.id, user, {new:user})
 .then(
     (userUpdate) =>{
+        console.log(userUpdate)
         res.send(userUpdate)
     }
 ).catch(
@@ -124,3 +127,23 @@ exports.deleteOne = (req, res) => {
         }
     ) 
     }
+
+    exports.login = (req, res) => {
+        UserModel.findOne({email: req.body.email} , (error, dataUser) => {
+            if(dataUser != null){
+                if(dataUser.password == req.body.password){
+                res.send({token: service.createToken(dataUser) })
+            }else {
+                res.status(400).send({
+                    message: 'Los datos no coinciden'
+                } )
+        }  
+    } else {
+        res.status(400).send({
+            message: 'Los datos no coinciden'
+        } )
+}  
+        })
+    
+    }
+          
